@@ -6,40 +6,59 @@
 <meta name="color-scheme" content="dark light">
 <title>台股・可進場清單</title>
 <style>
-  :root{--bg:#0b0e14;--card:#131824;--line:#232a3a;--txt:#e6ebf5;--dim:#8b97ad;
-    --go:#3ad29f;--deep:#6ab7ff;--accent:#ffcf6b}
+  :root{--fs:18px;--bg:#0b0e14;--card:#131824;--line:#232a3a;--txt:#e6ebf5;--dim:#93a0b8;
+    --go:#3ad29f;--deep:#6ab7ff;--accent:#ffcf6b;--up:#3ad29f;--dn:#ff7d97}
+  html{font-size:var(--fs)}
   *{box-sizing:border-box}
   body{margin:0;background:var(--bg);color:var(--txt);
-    font:16px/1.6 -apple-system,BlinkMacSystemFont,"PingFang TC","Noto Sans TC",sans-serif;
-    -webkit-text-size-adjust:100%;padding:env(safe-area-inset-top) 0 env(safe-area-inset-bottom)}
-  header{padding:20px 16px 12px;border-bottom:1px solid var(--line);position:sticky;top:0;
-    background:rgba(11,14,20,.92);backdrop-filter:blur(8px);z-index:2}
-  h1{margin:0;font-size:20px;letter-spacing:.5px}
-  .meta{color:var(--dim);font-size:13px;margin-top:4px}
-  .disc{color:var(--dim);font-size:12px;margin-top:8px;line-height:1.5}
-  main{max-width:680px;margin:0 auto;padding:12px}
-  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;
-    padding:14px 15px;margin:12px 0}
-  .chead{display:flex;align-items:center;flex-wrap:wrap;gap:8px}
-  .rank{color:var(--dim);font-size:13px;font-weight:600}
-  .name{font-size:18px;font-weight:700}
-  .tk{color:var(--dim);font-size:13px;font-variant-numeric:tabular-nums}
-  .badge{font-size:12px;font-weight:600;padding:2px 8px;border-radius:999px;line-height:1.5}
+    font-family:-apple-system,BlinkMacSystemFont,"PingFang TC","Noto Sans TC",sans-serif;
+    line-height:1.65;-webkit-text-size-adjust:100%;
+    padding:env(safe-area-inset-top) 0 env(safe-area-inset-bottom)}
+  header{padding:0.9rem 0.85rem 0.6rem;border-bottom:1px solid var(--line);position:sticky;top:0;
+    background:rgba(11,14,20,.94);backdrop-filter:blur(8px);z-index:3}
+  h1{margin:0;font-size:1.25rem;letter-spacing:.5px}
+  .meta{color:var(--dim);font-size:.8rem;margin-top:.25rem}
+  .disc{color:var(--dim);font-size:.72rem;margin-top:.4rem;line-height:1.5}
+  .fontctl{display:flex;align-items:center;gap:.4rem;margin-top:.55rem;font-size:.78rem;color:var(--dim)}
+  .fontctl button{font-family:inherit;background:#1c2434;color:var(--txt);border:1px solid var(--line);
+    border-radius:8px;padding:.35rem .7rem;font-size:.9rem;cursor:pointer;min-width:2.6rem}
+  .fontctl button:active{background:#2a3446}
+  main{max-width:720px;margin:0 auto;padding:.7rem}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:.85rem .9rem;margin:.7rem 0}
+  .chead{display:flex;align-items:center;flex-wrap:wrap;gap:.45rem}
+  .rank{color:var(--dim);font-size:.8rem;font-weight:600}
+  .name{font-size:1.15rem;font-weight:700}
+  .tk{color:var(--dim);font-size:.8rem;font-variant-numeric:tabular-nums}
+  .badge{font-size:.72rem;font-weight:700;padding:.12rem .5rem;border-radius:999px}
   .badge.go{color:#04231a;background:var(--go)}
   .badge.deep{color:#06243f;background:var(--deep)}
-  .score{margin-left:auto;color:var(--accent);font-size:13px;font-weight:600;font-variant-numeric:tabular-nums}
-  .sub{color:var(--dim);font-size:13px;margin:6px 0 2px}
-  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:10px 0 4px}
-  .grid div{background:#0e131e;border:1px solid var(--line);border-radius:9px;padding:8px 6px;text-align:center}
-  .grid label{display:block;color:var(--dim);font-size:11px;margin-bottom:3px}
-  .grid b{font-size:14px;font-variant-numeric:tabular-nums}
-  .why{margin-top:10px;font-size:14px;color:#cdd6e6;line-height:1.7;
-    border-top:1px dashed var(--line);padding-top:10px}
-  footer{max-width:680px;margin:0 auto;padding:16px 16px 40px;color:var(--dim);font-size:12px;line-height:1.6}
+  .score{margin-left:auto;color:var(--accent);font-size:.8rem;font-weight:700;font-variant-numeric:tabular-nums}
+  .sub{color:var(--dim);font-size:.82rem;margin:.4rem 0 .1rem}
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.45rem;margin:.6rem 0 .1rem}
+  .grid div{background:#0e131e;border:1px solid var(--line);border-radius:9px;padding:.5rem .3rem;text-align:center}
+  .grid label{display:block;color:var(--dim);font-size:.68rem;margin-bottom:.15rem}
+  .grid b{font-size:.92rem;font-variant-numeric:tabular-nums}
+  .chips{display:flex;flex-wrap:wrap;gap:.35rem;margin-top:.6rem}
+  .chip{background:#0e131e;border:1px solid var(--line);border-radius:8px;padding:.28rem .5rem;
+    font-size:.78rem;font-variant-numeric:tabular-nums;white-space:nowrap}
+  .chip i{color:var(--dim);font-style:normal;margin-right:.3rem;font-size:.72rem}
+  .chip.up{color:var(--up)} .chip.dn{color:var(--dn)}
+  .more{margin-top:.7rem;border-top:1px dashed var(--line);padding-top:.5rem}
+  .more summary{cursor:pointer;color:var(--deep);font-size:.85rem;font-weight:600;list-style:none;
+    padding:.35rem 0;user-select:none}
+  .more summary::-webkit-details-marker{display:none}
+  .more summary::before{content:"▸ ";}
+  .more[open] summary::before{content:"▾ ";}
+  .detail{margin:.4rem 0}
+  .drow{display:flex;gap:.5rem;padding:.3rem 0;border-bottom:1px solid #1b2231}
+  .drow b{color:var(--dim);font-weight:600;flex:0 0 4.5rem;font-size:.82rem}
+  .drow span{flex:1;font-size:.86rem;line-height:1.6}
+  .why{margin-top:.5rem;font-size:.86rem;color:#cdd6e6;line-height:1.75}
+  footer{max-width:720px;margin:0 auto;padding:1rem .9rem 2.5rem;color:var(--dim);font-size:.72rem;line-height:1.6}
   @media(prefers-color-scheme:light){
-    :root{--bg:#f5f7fb;--card:#fff;--line:#e2e7f0;--txt:#1a2233;--dim:#67728a}
-    header{background:rgba(245,247,251,.92)} .grid div{background:#f0f3f9}
-    .why{color:#3a4256}
+    :root{--bg:#f5f7fb;--card:#fff;--line:#e2e7f0;--txt:#1a2233;--dim:#5a6577}
+    header{background:rgba(245,247,251,.94)} .grid div,.chip{background:#f0f3f9}
+    .fontctl button{background:#eef1f7} .why{color:#333c4d} .drow{border-color:#e8ecf3}
   }
 </style>
 </head>
@@ -47,7 +66,12 @@
 <header>
   <h1>台股・可進場清單</h1>
   <div class="meta">準備度＝可進場（沒過熱＋法人在買）｜共 31 檔</div>
-  <div class="disc">研究／教育用途，非投資建議。價位皆為參考，請依當下盤勢與券商即時報價自行核對。</div>
+  <div class="fontctl">字級
+    <button onclick="fs(-1)" aria-label="縮小字體">A−</button>
+    <button onclick="fs(0)" aria-label="預設字體">A</button>
+    <button onclick="fs(1)" aria-label="放大字體">A＋</button>
+  </div>
+  <div class="disc">研究／教育用途，非投資建議。價位與數據皆為參考、非即時，請依券商 App／證交所資料自行核對。</div>
 </header>
 <main>
 
@@ -66,7 +90,12 @@
       <div><label>進場帶</label><b>76–77拉回分批</b></div>
       <div><label>停損</label><b>74.94</b></div>
     </div>
-    <div class="why">【短長皆宜】四個獨立面向罕見同向轉強：技術面日／週／月三週期站上各自關鍵均線、RSI落於60-62偏多未過熱，近三日自70.8帶量V型反彈至80.0；基本面營運雙軌加速，月營收YoY連6月為正且逐月擴大(+7.3%→+57.9%)、2026Q1稅後…</div>
+    <div class="chips"><span class="chip up"><i>月營收YoY</i>+57.9%</span><span class="chip up"><i>YTD YoY</i>+57.9%</span><span class="chip "><i>淨利率</i>27.6%</span><span class="chip "><i>ROE</i>10.5%</span><span class="chip "><i>負債比</i>40.2%</span><span class="chip "><i>OCF含金</i>2x</span><span class="chip "><i>PER</i>11.25x</span><span class="chip "><i>RSI</i>26</span><span class="chip dn"><i>乖離60</i>-2.4%</span><span class="chip "><i>距52高</i>-13.6%</span><span class="chip up"><i>外資</i>連買1日 +0.18萬張</span></div>
+    <details class="more">
+      <summary>展開完整評析</summary>
+      <div class="detail"><div class="drow"><b>觀點</b><span>日／週／月三週期均線同向多頭且RSI 60-62偏多未過熱，同時YTD營收+32.6%逐月加速、6月營益率44%創疫情後新高，技術結構與基本面同步支撐，短長皆宜。</span></div><div class="drow"><b>進場觸發</b><span>回測76–77（日SMA20=76.13＋7/6跳空缺口）不破即承接；或帶量收盤站穩81.4確認突破動能延續。</span></div><div class="drow"><b>進場時機</b><span>未來1–2週（7/13當週起）逢回76–77不破分批進場；若不拉回，待站穩81.4以上帶量再追價；本季逢回月線（69.3附近）皆可長線佈局。</span></div><div class="drow"><b>目標價</b><span>84（6/5前高＝52週高84.0壓力）</span></div><div class="drow"><b>停損</b><span>74.94</span></div><div class="drow"><b>風報比</b><span>0.8</span></div></div>
+      <div class="why">【短長皆宜】四個獨立面向罕見同向轉強：技術面日／週／月三週期站上各自關鍵均線、RSI落於60-62偏多未過熱，近三日自70.8帶量V型反彈至80.0；基本面營運雙軌加速，月營收YoY連6月為正且逐月擴大(+7.3%→+57.9%)、2026Q1稅後…</div>
+    </details>
   </article>
 
   <article class="card">
@@ -84,7 +113,12 @@
       <div><label>進場帶</label><b>59–61分批</b></div>
       <div><label>停損</label><b>59.42</b></div>
     </div>
-    <div class="why">【長線】綜合四份報告，2606基本面確立向上拐點且估值便宜，構成建設性（Overweight）而非中性：營收YoY自1月+6.7%加速至5月+41.8%、6月+35.5%（YTD+24.3%），2026Q1稅後淨利YoY+334.9%、EPS由…</div>
+    <div class="chips"><span class="chip "><i>淨利率</i>25.4%</span><span class="chip "><i>ROE</i>10.8%</span><span class="chip "><i>負債比</i>54.7%</span><span class="chip "><i>OCF含金</i>1.7x</span><span class="chip "><i>PER</i>12.09x</span><span class="chip "><i>RSI</i>54</span><span class="chip dn"><i>乖離60</i>-2.1%</span><span class="chip "><i>距52高</i>-13.7%</span><span class="chip up"><i>外資</i>連買1日 +0.16萬張</span></div>
+    <details class="more">
+      <summary>展開完整評析</summary>
+      <div class="detail"><div class="drow"><b>觀點</b><span>月線站上10月均線/年線且基本面（營收加速、EPS大增、現金流品質佳）同步改善，支持數月尺度逢低（59–61）承接，但日/週線仍在消化6月-19%修正、反彈量能不足（5日均量3.49M&lt;20日6.05M）且卡在SMA50(64.78)下方，不利短線搶進。</span></div><div class="drow"><b>進場觸發</b><span>回測59–61支撐區不破（與SMA200=60.91、週SMA52=59.56疊合）即分批承接，勿在SMA50=64.78下方追價。</span></div><div class="drow"><b>進場時機</b><span>本季（Q3）逢回59–61即可分批佈局；若先強勢收盤帶量站上65.0，則待該次回測不破再補（例如未來1–3週）。</span></div><div class="drow"><b>目標價</b><span>78.5（法人共識目標78.5元(+25%)）</span></div><div class="drow"><b>停損</b><span>59.42</span></div><div class="drow"><b>風報比</b><span>4.3</span></div></div>
+      <div class="why">【長線】綜合四份報告，2606基本面確立向上拐點且估值便宜，構成建設性（Overweight）而非中性：營收YoY自1月+6.7%加速至5月+41.8%、6月+35.5%（YTD+24.3%），2026Q1稅後淨利YoY+334.9%、EPS由…</div>
+    </details>
   </article>
 
   <article class="card">
@@ -102,7 +136,12 @@
       <div><label>進場帶</label><b>76.6–78.7分批承接</b></div>
       <div><label>停損</label><b>74.34</b></div>
     </div>
-    <div class="why">【長線】週期性航運股於循環轉折點的建設性布局：前瞻驅動力（運價）正向上，勝過落後的Q1獲利數據。SCFI連漲10週至3,326.87點、中東繞航消耗全球5-6%運力，帶動4/5月營收強彈（+13.1%/+22.9%），使1-5月YTD由負翻正至…</div>
+    <div class="chips"><span class="chip "><i>淨利率</i>22.8%</span><span class="chip "><i>ROE</i>10.6%</span><span class="chip "><i>負債比</i>31.7%</span><span class="chip "><i>OCF含金</i>1.3x</span><span class="chip "><i>PER</i>7.33x</span><span class="chip "><i>RSI</i>48</span><span class="chip up"><i>乖離60</i>+0.3%</span><span class="chip "><i>距52高</i>-16%</span><span class="chip up"><i>外資</i>連買1日 +0.33萬張</span></div>
+    <details class="more">
+      <summary>展開完整評析</summary>
+      <div class="detail"><div class="drow"><b>觀點</b><span>月線站上10月年線（77.86）且估值跌破淨值（PBR 0.78）、運價循環向上，屬長線逢低分批布局格局；惟日線卡在SMA20/50/200僅1.9%糾結窄帶、無確認突破，不利搶短，故長優於短。</span></div><div class="drow"><b>進場觸發</b><span>回測76.6～78.7支撐區（含SMA200=78.68）守穩不破，或日線收盤放量站上80.2～80.5，均可視為分批進場確認訊號。</span></div><div class="drow"><b>進場時機</b><span>本季（Q3）逢回測支撐即可分批佈局，非搶短，並留意約8/10前後公布之7月營收確認運價修復動能是否延續。</span></div><div class="drow"><b>目標價</b><span>87.8（前高87.8（6月週線高點））</span></div><div class="drow"><b>停損</b><span>74.34</span></div><div class="drow"><b>風報比</b><span>1.7</span></div></div>
+      <div class="why">【長線】週期性航運股於循環轉折點的建設性布局：前瞻驅動力（運價）正向上，勝過落後的Q1獲利數據。SCFI連漲10週至3,326.87點、中東繞航消耗全球5-6%運力，帶動4/5月營收強彈（+13.1%/+22.9%），使1-5月YTD由負翻正至…</div>
+    </details>
   </article>
 
   <article class="card">
@@ -120,7 +159,12 @@
       <div><label>進場帶</label><b>回102–103分批</b></div>
       <div><label>停損</label><b>99.46</b></div>
     </div>
-    <div class="why">【短線】評級Overweight（建設性偏多，非強力買進），horizon短線。核心判斷：前瞻性硬數據（4/5/6月營收YoY由負轉正並加速+8.3%→+15.1%、環比再增15.2%）＋日線爆量反轉（7/1單日+8%、量達20日均量3.4倍，…</div>
+    <div class="chips"><span class="chip "><i>淨利率</i>12.6%</span><span class="chip "><i>ROE</i>22.8%</span><span class="chip "><i>負債比</i>48.1%</span><span class="chip "><i>OCF含金</i>0.3x</span><span class="chip "><i>PER</i>13.19x</span><span class="chip "><i>RSI</i>38</span><span class="chip up"><i>乖離60</i>0%</span><span class="chip "><i>距52高</i>-10.2%</span><span class="chip up"><i>外資</i>連買1日 +0.02萬張</span></div>
+    <details class="more">
+      <summary>展開完整評析</summary>
+      <div class="detail"><div class="drow"><b>觀點</b><span>日線爆量轉強、營收連月加速且估值有殖利率撐底，但月線仍在10月均線(116.16)之下、獲利率連三季收縮並存貨堆積，僅支持短線順勢操作、尚不宜抱長。</span></div><div class="drow"><b>進場觸發</b><span>拉回測試日SMA20/50(102.88/102.33)不破、量縮止穩，才分批布局，不追高。</span></div><div class="drow"><b>進場時機</b><span>未來1–2週（7/13～7/24盤面）拉回不破即分批進場，若不拉回則暫不追價。</span></div><div class="drow"><b>目標價</b><span>113（近期壓力113（7/6高點/群聚上緣））</span></div><div class="drow"><b>停損</b><span>99.46</span></div><div class="drow"><b>風報比</b><span>0.7</span></div></div>
+      <div class="why">【短線】評級Overweight（建設性偏多，非強力買進），horizon短線。核心判斷：前瞻性硬數據（4/5/6月營收YoY由負轉正並加速+8.3%→+15.1%、環比再增15.2%）＋日線爆量反轉（7/1單日+8%、量達20日均量3.4倍，…</div>
+    </details>
   </article>
 
   <article class="card">
@@ -138,7 +182,12 @@
       <div><label>進場帶</label><b>21.8–22.0 分批</b></div>
       <div><label>停損</label><b>20.47</b></div>
     </div>
-    <div class="why">【長線】給予Overweight（建設性偏多）而非Buy或Hold。基本面明確「改善」：2026年2–5月營收YoY連四月加速（5月+27.7%，6月創單月新高+28.8%），2026Q1毛利率20.6%、營益率11.3%、稅後淨利率10.3%…</div>
+    <div class="chips"><span class="chip "><i>淨利率</i>10.3%</span><span class="chip "><i>ROE</i>16.9%</span><span class="chip "><i>負債比</i>70.9%</span><span class="chip "><i>OCF含金</i>2.2x</span><span class="chip "><i>PER</i>8.61x</span><span class="chip "><i>RSI</i>51</span><span class="chip up"><i>乖離60</i>+11.6%</span><span class="chip "><i>距52高</i>-10.9%</span><span class="chip up"><i>外資</i>連買1日 +0.37萬張</span></div>
+    <details class="more">
+      <summary>展開完整評析</summary>
+      <div class="detail"><div class="drow"><b>觀點</b><span>月線站上10月均線、週線多頭排列且基本面（營收連四月加速、三率擴張、OCF/NI 2.22、PER 8.6）強勁支持抱長，但日線正回檔（收盤跌破SMA20、RSI 54、距6/25高點回落約一成）不利搶短，屬長線布局標的。</span></div><div class="drow"><b>進場觸發</b><span>回測21.8–22.0元支撐（緊貼日線SMA20 22.09下緣）不破即分批進場；若失守則等回測20.0–20.4元（日線SMA50/200＋週線SMA10群聚）再介入。</span></div><div class="drow"><b>進場時機</b><span>長線布局窗口放寬：本季（Q3）逢回測21.8–22.0或拉回至20.0–20.4皆可分批佈局，7/10除息後填息表現亦可作觀察點，不必拘泥單一時點。</span></div><div class="drow"><b>目標價</b><span>25.65（長線目標2024年前高25.65（區間25.65–27.2下緣））</span></div><div class="drow"><b>停損</b><span>20.47</span></div><div class="drow"><b>風報比</b><span>2.3</span></div></div>
+      <div class="why">【長線】給予Overweight（建設性偏多）而非Buy或Hold。基本面明確「改善」：2026年2–5月營收YoY連四月加速（5月+27.7%，6月創單月新高+28.8%），2026Q1毛利率20.6%、營益率11.3%、稅後淨利率10.3%…</div>
+    </details>
   </article>
 
   <article class="card">
@@ -156,7 +205,12 @@
       <div><label>進場帶</label><b>50.0–51.5分批</b></div>
       <div><label>停損</label><b>49.24</b></div>
     </div>
-    <div class="why">【短線】建設性偏多但非高信念，屬「便宜循環股在谷底出現領先訊號」的偏多佈局情境，宜以短線/戰術性部位表達。決策核心：向前看的正向指標（4、5月營收YoY轉兩位數正成長+13.9%/+22.2%、YTD衰退收斂至-3.4%；PBR僅0.56倍且O…</div>
+    <div class="chips"><span class="chip "><i>淨利率</i>3.9%</span><span class="chip "><i>ROE</i>3.4%</span><span class="chip "><i>負債比</i>28.3%</span><span class="chip "><i>OCF含金</i>8x</span><span class="chip "><i>PER</i>16.98x</span><span class="chip "><i>RSI</i>53</span><span class="chip up"><i>乖離60</i>+2.3%</span><span class="chip "><i>距52高</i>-30%</span><span class="chip up"><i>外資</i>連買1日 +0.27萬張</span></div>
+    <details class="more">
+      <summary>展開完整評析</summary>
+      <div class="detail"><div class="drow"><b>觀點</b><span>日線站回SMA20/50且籌碼與7/14除息題材支持短線區間操作，但月線仍在10月均線(約53.5)下方、獲利谷底未確認，長線結構尚不支持抱長。</span></div><div class="drow"><b>進場觸發</b><span>拉回至日線SMA20/50與近20日低點交會的50.0–51.5區間、量縮不破且守穩，視為有效分批進場點；若改採突破追蹤則需帶量站穩55.7方可視為轉強。</span></div><div class="drow"><b>進場時機</b><span>2026-07-08後：下週一至三(7/13–7/15)逢拉回不破50.0–51.5即可分批進場，並留意7/14除息當日價格調整、勿誤判為破線。</span></div><div class="drow"><b>目標價</b><span>55.7（上方壓力55.7(近60日高/週線壓力區)）</span></div><div class="drow"><b>停損</b><span>49.24</span></div><div class="drow"><b>風報比</b><span>1.1</span></div></div>
+      <div class="why">【短線】建設性偏多但非高信念，屬「便宜循環股在谷底出現領先訊號」的偏多佈局情境，宜以短線/戰術性部位表達。決策核心：向前看的正向指標（4、5月營收YoY轉兩位數正成長+13.9%/+22.2%、YTD衰退收斂至-3.4%；PBR僅0.56倍且O…</div>
+    </details>
   </article>
 
   <article class="card">
@@ -174,7 +228,12 @@
       <div><label>進場帶</label><b>323–335分批</b></div>
       <div><label>停損</label><b>318.58</b></div>
     </div>
-    <div class="why">【短線】評等Overweight（建設性、可分批布局但控倉）。決策核心是最可驗證的基本面：2026Q1毛利率32.2%/營益率22.8%/淨利率19.1%三率同創近5季新高且QoQ同步擴張，獲利成長(+9~11%YoY)明顯快於營收(+2.6%…</div>
+    <div class="chips"><span class="chip up"><i>月營收YoY</i>+14.4%</span><span class="chip up"><i>YTD YoY</i>+14.4%</span><span class="chip "><i>淨利率</i>19.1%</span><span class="chip "><i>ROE</i>20.6%</span><span class="chip "><i>負債比</i>25.4%</span><span class="chip "><i>OCF含金</i>1.3x</span><span class="chip "><i>PER</i>16.26x</span><span class="chip "><i>RSI</i>57</span><span class="chip dn"><i>乖離60</i>-4.6%</span><span class="chip "><i>距52高</i>-28.5%</span><span class="chip dn"><i>外資</i>連賣1日 -0.01萬張</span></div>
+    <details class="more">
+      <summary>展開完整評析</summary>
+      <div class="detail"><div class="drow"><b>觀點</b><span>月線仍處16-17個月主跌段、週線偏空未站回SMA20週(347.4)，長期趨勢尚未反轉不宜貿然抱長；但日線爆量長紅突破SMA20/50、融資雙波積累(+49.7%)、中東轉單題材醞釀，短線具明確反彈交易機會(進場約340、停損約324、目標355-367)，待週收站回347.4、月收站回年線371.35再升格為長線。</span></div><div class="drow"><b>進場觸發</b><span>拉回測323缺口下緣／327.8(SMA20日)支撐不破即分批進場，若無回測則需帶量收盤站上355.5前高再順勢追價。</span></div><div class="drow"><b>進場時機</b><span>7/8–7/18約1–2週內逢回測即分批；若無回測，待週收站回347.4或帶量突破355.5再確認進場。</span></div><div class="drow"><b>目標價</b><span>355.5（近20日高點/週線前高355.5）</span></div><div class="drow"><b>停損</b><span>318.58</span></div><div class="drow"><b>風報比</b><span>0.7</span></div></div>
+      <div class="why">【短線】評等Overweight（建設性、可分批布局但控倉）。決策核心是最可驗證的基本面：2026Q1毛利率32.2%/營益率22.8%/淨利率19.1%三率同創近5季新高且QoQ同步擴張，獲利成長(+9~11%YoY)明顯快於營收(+2.6%…</div>
+    </details>
   </article>
 
   <article class="card">
@@ -192,7 +251,12 @@
       <div><label>進場帶</label><b>305–308 分批</b></div>
       <div><label>停損</label><b>305.42</b></div>
     </div>
-    <div class="why">【長線】給予Overweight（建設性偏多）而非Buy，核心在於「基本面方向向上、籌碼結構扎實，但現價估值與技術位置不提供安全邊際」。多方論據紮實：2026Q1營收YoY+18.3%、營業利益YoY+25.9%，毛利率53.3%／營益率28.…</div>
+    <div class="chips"><span class="chip up"><i>月營收YoY</i>+33.9%</span><span class="chip up"><i>YTD YoY</i>+33.9%</span><span class="chip "><i>淨利率</i>25.3%</span><span class="chip "><i>ROE</i>14.6%</span><span class="chip "><i>負債比</i>32%</span><span class="chip "><i>OCF含金</i>0.2x</span><span class="chip "><i>PER</i>18.03x</span><span class="chip up"><i>乖離60</i>0%</span><span class="chip "><i>距52高</i>0%</span><span class="chip up"><i>外資</i>連買1日 +0萬張</span></div>
+    <details class="more">
+      <summary>展開完整評析</summary>
+      <div class="detail"><div class="drow"><b>觀點</b><span>月線重回 mSMA10、週線確立 HH/HL 多頭結構且基本面本業動能近五季最強，長線格局明確；但日線 RSI 79 嚴重超買、量縮動能衰竭，不利現價追短，宜回測 305–308 或 298–303 密集支撐帶分批建長。</span></div><div class="drow"><b>進場觸發</b><span>回測 305–308 整理平台帶量止跌（出現帶量陽線或日線 RSI 回落 60 以下確認支撐有效）再分批進場。</span></div><div class="drow"><b>進場時機</b><span>本季（6–8 月）回測月線或 305–308 支撐平台皆可分批佈局，若 RSI 修正未至支撐帶則靜待。</span></div><div class="drow"><b>目標價</b><span>356.5（52週高 356.5 壓力）</span></div><div class="drow"><b>停損</b><span>305.42</span></div><div class="drow"><b>風報比</b><span>2.2</span></div></div>
+      <div class="why">【長線】給予Overweight（建設性偏多）而非Buy，核心在於「基本面方向向上、籌碼結構扎實，但現價估值與技術位置不提供安全邊際」。多方論據紮實：2026Q1營收YoY+18.3%、營業利益YoY+25.9%，毛利率53.3%／營益率28.…</div>
+    </details>
   </article>
 
   <article class="card">
@@ -210,7 +274,12 @@
       <div><label>進場帶</label><b>213–226 分批布局</b></div>
       <div><label>停損</label><b>196.62</b></div>
     </div>
-    <div class="why">【長線】基本面為決定性證據：2026Q1毛利率38.4%、淨利率23.2%（過電子業20%門檻）、EPS1.95元YoY+54%創14季新高，盈餘成長（+53.7%）遠超營收（+24%）顯示規模槓桿質變；月營收YoY由+22%加速至5月+33%…</div>
+    <div class="chips"><span class="chip up"><i>月營收YoY</i>+36.6%</span><span class="chip up"><i>YTD YoY</i>+36.6%</span><span class="chip "><i>淨利率</i>23.2%</span><span class="chip "><i>ROE</i>15.6%</span><span class="chip "><i>負債比</i>43.2%</span><span class="chip "><i>OCF含金</i>1.8x</span><span class="chip "><i>PER</i>35.97x</span><span class="chip "><i>RSI</i>58</span><span class="chip up"><i>乖離60</i>+5.4%</span><span class="chip "><i>距52高</i>-14.5%</span><span class="chip up"><i>外資</i>持平0日 +0萬張</span></div>
+    <details class="more">
+      <summary>展開完整評析</summary>
+      <div class="detail"><div class="drow"><b>觀點</b><span>月線多頭結構完整（連18月站上SMA10、營收YoY加速至+33%、EPS YoY+54%、龍潭廠Q3 AI ASIC放量在即）支持數月以上抱長，但日/週線正處高點回檔、月RSI 82超買，短線搶進不利，宜回檔分批布局。</span></div><div class="drow"><b>進場觸發</b><span>回測 SMA20（226.3）不破且日K收紅，或回落至 213–221 撐帶後出現縮量止跌反彈 K 棒，確認短線底部後分批進場。</span></div><div class="drow"><b>進場時機</b><span>本季回測月線皆可布局；若近 1–2 週跌回 213–226 區即可啟動第一批，不追高 241 突破確認前不加碼。</span></div><div class="drow"><b>目標價</b><span>259（52週高/前高259，突破241後再測目標、停利區上緣）</span></div><div class="drow"><b>停損</b><span>196.62</span></div><div class="drow"><b>風報比</b><span>1</span></div></div>
+      <div class="why">【長線】基本面為決定性證據：2026Q1毛利率38.4%、淨利率23.2%（過電子業20%門檻）、EPS1.95元YoY+54%創14季新高，盈餘成長（+53.7%）遠超營收（+24%）顯示規模槓桿質變；月營收YoY由+22%加速至5月+33%…</div>
+    </details>
   </article>
 
   <article class="card">
@@ -228,7 +297,12 @@
       <div><label>進場帶</label><b>32.80–33.30分批</b></div>
       <div><label>停損</label><b>32.86</b></div>
     </div>
-    <div class="why">【長線】綜合評等給Overweight（建設性偏多），非Buy亦非Hold。理由：一、基本面明確改善且非空穴來風——2026Q1營收YoY+17.4%、稅後淨利YoY+14.3%、稅後淨利率由Q4低點34.0%回升至40.0%（QoQ擴張），1…</div>
+    <div class="chips"><span class="chip up"><i>月營收YoY</i>+25.3%</span><span class="chip up"><i>YTD YoY</i>+25.3%</span><span class="chip "><i>負債比</i>93.9%</span><span class="chip "><i>PER</i>15.8x</span><span class="chip "><i>RSI</i>74</span><span class="chip up"><i>乖離60</i>+7.7%</span><span class="chip "><i>距52高</i>-2.1%</span><span class="chip up"><i>外資</i>連買1日 +1.4萬張</span></div>
+    <details class="more">
+      <summary>展開完整評析</summary>
+      <div class="detail"><div class="drow"><b>觀點</b><span>月線與週線維持多頭、基本面雙位數成長加上9月併購三商壽的中期結構性催化，支持抱數月；但日線貼SMA20之下、屬價漲量縮的無力反彈且短線籌碼轉弱，34.50不宜追高，故定位為長線佈局標的。</span></div><div class="drow"><b>進場觸發</b><span>回測32.80–33.30支撐（缺口低點/50MA/週線SMA10-20群聚）不破止跌翻紅，或帶量收盤站上34.65整理高點再加碼。</span></div><div class="drow"><b>進場時機</b><span>本季（Q3）逢回測支撐區即可分批進場，不必單押時點；月線持續站穩10月均線(≈32.5~32.6)之上此佈局邏輯即維持有效。</span></div><div class="drow"><b>目標價</b><span>36.6（52週高/6-22波段前高36.60）</span></div><div class="drow"><b>停損</b><span>32.86</span></div><div class="drow"><b>風報比</b><span>1.3</span></div></div>
+      <div class="why">【長線】綜合評等給Overweight（建設性偏多），非Buy亦非Hold。理由：一、基本面明確改善且非空穴來風——2026Q1營收YoY+17.4%、稅後淨利YoY+14.3%、稅後淨利率由Q4低點34.0%回升至40.0%（QoQ擴張），1…</div>
+    </details>
   </article>
 
   <article class="card">
@@ -246,7 +320,12 @@
       <div><label>進場帶</label><b>1,260–1,305 分批</b></div>
       <div><label>停損</label><b>1172</b></div>
     </div>
-    <div class="why">【長線】綜合五份報告，基本面是本案最強且最可驗證的支柱：2026Q1營收首破百億、EPS13.35元年增+38%、毛利率48.0%/營益率33.2%雙創近八季新高、ROE18%且方向向上、OCF/NI含金量0.97、負債比僅17.8%，全面加速…</div>
+    <div class="chips"><span class="chip up"><i>月營收YoY</i>+44.9%</span><span class="chip up"><i>YTD YoY</i>+44.9%</span><span class="chip "><i>淨利率</i>26.7%</span><span class="chip "><i>ROE</i>18%</span><span class="chip "><i>負債比</i>17.8%</span><span class="chip "><i>OCF含金</i>1x</span><span class="chip "><i>PER</i>29.44x</span><span class="chip "><i>RSI</i>53</span><span class="chip dn"><i>乖離60</i>-2.2%</span><span class="chip "><i>距52高</i>-15.9%</span><span class="chip dn"><i>外資</i>連賣1日 -0.01萬張</span></div>
+    <details class="more">
+      <summary>展開完整評析</summary>
+      <div class="detail"><div class="drow"><b>觀點</b><span>月線多頭結構完整（站上月SMA10 1,101、距高點僅-17.5%）且基本面加速向上，適合長線分批佈局；但日線跌破SMA20、週線剛破SMA10、籌碼仍在鬆動，短線缺乏追多訊號，故定位長線而非短線。</span></div><div class="drow"><b>進場觸發</b><span>回測 1,260–1,305 支撐帶（6/02 低點 1,245 + 日線 SMA50 1,305 區間）出現量縮收紅或長下影線 K 棒確認不破，即可分批建倉。</span></div><div class="drow"><b>進場時機</b><span>本季（6 月起）回測支撐帶即可分批佈局，不設硬性截止日；若 6 月底前未回測則等週線守穩 SMA10（1,328）後視量能再評估。</span></div><div class="drow"><b>目標價</b><span>1500（交易計畫首目標 1,480–1,500（次目標 1,600 前高））</span></div><div class="drow"><b>停損</b><span>1172</span></div><div class="drow"><b>風報比</b><span>1.2</span></div></div>
+      <div class="why">【長線】綜合五份報告，基本面是本案最強且最可驗證的支柱：2026Q1營收首破百億、EPS13.35元年增+38%、毛利率48.0%/營益率33.2%雙創近八季新高、ROE18%且方向向上、OCF/NI含金量0.97、負債比僅17.8%，全面加速…</div>
+    </details>
   </article>
 
   <article class="card">
@@ -264,7 +343,12 @@
       <div><label>進場帶</label><b>回 103–104 分批</b></div>
       <div><label>停損</label><b>104.2</b></div>
     </div>
-    <div class="why">【長線】基本面實質改善而非僅題材：2026Q1稅後淨利335.6億(QoQ+12%)、淨利率50.7%遠超金融業25%門檻，前5月稅後純益878.5億創歷史同期新高，調整後EPS達11.36元、各子公司(北富銀利息+27%、富邦證手續費+121…</div>
+    <div class="chips"><span class="chip "><i>負債比</i>92.1%</span><span class="chip "><i>PER</i>17.33x</span><span class="chip "><i>RSI</i>36</span><span class="chip up"><i>乖離60</i>+16.6%</span><span class="chip "><i>距52高</i>-10.6%</span><span class="chip up"><i>外資</i>連買1日 +0.37萬張</span></div>
+    <details class="more">
+      <summary>展開完整評析</summary>
+      <div class="detail"><div class="drow"><b>觀點</b><span>月線11個月上升段配合2026Q1獲利V型回升與外資強力建倉，結構性多頭支撐長線持有；但日/週/月三週期RSI同步深度超買、股價已逾分析師目標價，短線追高風險報酬不對稱，宜回測103-104或96-98分批進場。</span></div><div class="drow"><b>進場觸發</b><span>回測 103–104 突破頸線區後日收紅、站穩不破再分批承接。</span></div><div class="drow"><b>進場時機</b><span>本季（2026Q2–Q3）任何回測 103–104 週均線支撐皆可佈局，若更大力回踩 96–98 區則加碼第二批。</span></div><div class="drow"><b>目標價</b><span>112（52週高暨近期盤中高點 112.0 壓力）</span></div><div class="drow"><b>停損</b><span>104.2</span></div><div class="drow"><b>風報比</b><span>0.3</span></div></div>
+      <div class="why">【長線】基本面實質改善而非僅題材：2026Q1稅後淨利335.6億(QoQ+12%)、淨利率50.7%遠超金融業25%門檻，前5月稅後純益878.5億創歷史同期新高，調整後EPS達11.36元、各子公司(北富銀利息+27%、富邦證手續費+121…</div>
+    </details>
   </article>
 
   <article class="card">
@@ -282,7 +366,12 @@
       <div><label>進場帶</label><b>182–189 分批</b></div>
       <div><label>停損</label><b>175.4</b></div>
     </div>
-    <div class="why">綜合技術、基本、籌碼、新聞四面與多空辯論，3596在187.5元呈現「估值合理+籌碼轉強+成長邏輯清晰」的偏多風險報酬，給予Overweight（建設性偏多），但因年線壓頂與安全邊際縮窄，不足以升至Buy。</div>
+    <div class="chips"><span class="chip up"><i>月營收YoY</i>+4%</span><span class="chip up"><i>YTD YoY</i>+4%</span><span class="chip "><i>淨利率</i>5.4%</span><span class="chip "><i>ROE</i>17.7%</span><span class="chip "><i>負債比</i>70.7%</span><span class="chip "><i>OCF含金</i>7.3x</span><span class="chip "><i>PER</i>15.45x</span><span class="chip up"><i>乖離60</i>0%</span><span class="chip "><i>距52高</i>0%</span><span class="chip up"><i>外資</i>連買1日 +0.01萬張</span></div>
+    <details class="more">
+      <summary>展開完整評析</summary>
+      
+      <div class="why">綜合技術、基本、籌碼、新聞四面與多空辯論，3596在187.5元呈現「估值合理+籌碼轉強+成長邏輯清晰」的偏多風險報酬，給予Overweight（建設性偏多），但因年線壓頂與安全邊際縮窄，不足以升至Buy。</div>
+    </details>
   </article>
 
   <article class="card">
@@ -300,7 +389,12 @@
       <div><label>進場帶</label><b>4855–5010分批</b></div>
       <div><label>停損</label><b>4447.6</b></div>
     </div>
-    <div class="why">【長線】中長期結構與題材面明顯佔優:月/週線多頭未破、15個月上升循環+242%、YTD營收+45%、ROE39.6%、PER僅16.8倍對比成長並不貴,且AWSTrainium3(6月已啟動拉貨)、AMDMI450、OpenAIASIC三波動…</div>
+    <div class="chips"><span class="chip "><i>淨利率</i>5.1%</span><span class="chip "><i>ROE</i>39.6%</span><span class="chip "><i>負債比</i>67.6%</span><span class="chip "><i>OCF含金</i>-1.1x</span><span class="chip "><i>PER</i>16.93x</span><span class="chip "><i>RSI</i>49</span><span class="chip up"><i>乖離60</i>+2.5%</span><span class="chip "><i>距52高</i>-14.1%</span><span class="chip dn"><i>外資</i>連賣1日 -0.02萬張</span></div>
+    <details class="more">
+      <summary>展開完整評析</summary>
+      <div class="detail"><div class="drow"><b>觀點</b><span>月線與週線多頭排列且 H2 三波 AI 催化劑(T3/MI450/OpenAI ASIC)提供數月級基本面支撐,但日線卡在 SMA50 下短線整理、融資退場籌碼轉弱不利搶短,宜逢拉回布局長線部位而非搶短。</span></div><div class="drow"><b>進場觸發</b><span>拉回不破日SMA20(4891.5)與近兩日低點4995–5010並站穩即分批介入,若失守再破4250波段低則轉弱訊號失效。</span></div><div class="drow"><b>進場時機</b><span>本季(Q3)逢拉回不破4855–5010即可分批布局,若跌破則待4250–4500區間再進場。</span></div><div class="drow"><b>目標價</b><span>5880（52週高5880(2026/5/25盤中)）</span></div><div class="drow"><b>停損</b><span>4447.6</span></div><div class="drow"><b>風報比</b><span>1.5</span></div></div>
+      <div class="why">【長線】中長期結構與題材面明顯佔優:月/週線多頭未破、15個月上升循環+242%、YTD營收+45%、ROE39.6%、PER僅16.8倍對比成長並不貴,且AWSTrainium3(6月已啟動拉貨)、AMDMI450、OpenAIASIC三波動…</div>
+    </details>
   </article>
 
   <article class="card">
@@ -318,7 +412,12 @@
       <div><label>進場帶</label><b>68.6–69.4分批</b></div>
       <div><label>停損</label><b>66.4</b></div>
     </div>
-    <div class="why">【長線】規則衝突：本session要求明確評級vs兩份技術/基本面報告資料抓取失敗，採「以現有可查證證據作判斷」。技術面（日/週/月三週期均線、RSI、ATR、支撐壓力）與基本面五組數據皆因FinMindIP被暫封（403）全數缺席，這是本案最…</div>
+    <div class="chips"><span class="chip "><i>PER</i>10.38x</span><span class="chip "><i>RSI</i>44</span><span class="chip up"><i>乖離60</i>+1.5%</span><span class="chip "><i>距52高</i>-18.1%</span><span class="chip dn"><i>外資</i>連賣1日 -0.09萬張</span></div>
+    <details class="more">
+      <summary>展開完整評析</summary>
+      <div class="detail"><div class="drow"><b>觀點</b><span>日/週/月三週期均線因 FinMind 403 全數無法計算、短線技術訊號缺席，但月營收創13個月新高、訂單能見度延伸至2028、越南廠轉盈與外資3個月淨買+30M 等基本面/籌碼結構支持數月以上的長線持有，故定位長線而非搶短。</span></div><div class="drow"><b>進場觸發</b><span>拉回不破當日低點68.6企稳分批進場，或帶量站上52週高70.0再加碼。</span></div><div class="drow"><b>進場時機</b><span>本季（三個月內）逢回不破68.6即可分批佈局，並待FinMind解禁（約10-15分鐘後）技術資料補齊再確認加碼時點。</span></div><div class="drow"><b>目標價</b><span>70（52週高70.0(quote端點，非as-of技術報告)）</span></div><div class="drow"><b>停損</b><span>66.4</span></div><div class="drow"><b>風報比</b><span>0.2</span></div></div>
+      <div class="why">【長線】規則衝突：本session要求明確評級vs兩份技術/基本面報告資料抓取失敗，採「以現有可查證證據作判斷」。技術面（日/週/月三週期均線、RSI、ATR、支撐壓力）與基本面五組數據皆因FinMindIP被暫封（403）全數缺席，這是本案最…</div>
+    </details>
   </article>
 
   <article class="card">
@@ -336,7 +435,12 @@
       <div><label>進場帶</label><b>回 115–118 分批</b></div>
       <div><label>停損</label><b>115.32</b></div>
     </div>
-    <div class="why">【長線】給予Overweight（建設性偏多）而非Buy，核心理由為三條腿同步但帶一個明確現金流警示。正面：(1)利潤率V型回升且達標——2026Q1毛利率36.0%、營益率24.5%、淨利率22.8%（跨越電子業≥20%門檻），EPS2.59…</div>
+    <div class="chips"><span class="chip "><i>PER</i>18.51x</span><span class="chip "><i>RSI</i>49</span><span class="chip up"><i>乖離60</i>+10.2%</span><span class="chip "><i>距52高</i>-9.9%</span><span class="chip up"><i>外資</i>持平0日 +0萬張</span></div>
+    <details class="more">
+      <summary>展開完整評析</summary>
+      <div class="detail"><div class="drow"><b>觀點</b><span>月線剛走出五個月整理底部、訂單能見度八九成且產能Q2翻倍支撐長線基本面，但日線RSI 69.55近超買、距52週高僅12.2%且放量+109%，短線追高需等回測SMA20(115.78)，故偏長不偏短。</span></div><div class="drow"><b>進場觸發</b><span>回測 SMA20（115.78）至最近週K低點 118 區間量縮不破，次日收紅確認。</span></div><div class="drow"><b>進場時機</b><span>本季（6–8月）任一回測月線SMA10以上皆可分批佈局，不急於追高。</span></div><div class="drow"><b>目標價</b><span>139（52週高（API）139 前波壓力）</span></div><div class="drow"><b>停損</b><span>115.32</span></div><div class="drow"><b>風報比</b><span>2.5</span></div></div>
+      <div class="why">【長線】給予Overweight（建設性偏多）而非Buy，核心理由為三條腿同步但帶一個明確現金流警示。正面：(1)利潤率V型回升且達標——2026Q1毛利率36.0%、營益率24.5%、淨利率22.8%（跨越電子業≥20%門檻），EPS2.59…</div>
+    </details>
   </article>
 
   <article class="card">
@@ -354,7 +458,12 @@
       <div><label>進場帶</label><b>回 32.30–32.50 分批</b></div>
       <div><label>停損</label><b>31.26</b></div>
     </div>
-    <div class="why">【長線】基本面確實轉強而非曇花一現：2026Q1稅後淨利110.17億（YoY+51.7%）、淨利率42.0%創觀察期新高、EPS0.76元、ROE12.7%且趨勢向上，YTD營收+50.1%核心來自京城銀100%整併帶來的結構性規模效益（分行…</div>
+    <div class="chips"><span class="chip "><i>負債比</i>93%</span><span class="chip "><i>PER</i>20.05x</span><span class="chip "><i>RSI</i>82</span><span class="chip up"><i>乖離60</i>+24.8%</span><span class="chip "><i>距52高</i>-0.2%</span><span class="chip up"><i>外資</i>連買1日 +1.41萬張</span></div>
+    <details class="more">
+      <summary>展開完整評析</summary>
+      <div class="detail"><div class="drow"><b>觀點</b><span>月線與週線結構偏多且基本面（獲利+51.7%、京城銀整併規模效益）持續改善支持抱長，但日線RSI 66.56貼近超買、現價距52週高僅2.82%且6/3突破未經量能確認，短線追高風險報酬不佳，故定位長線佈局而非搶短。</span></div><div class="drow"><b>進場觸發</b><span>回測 32.30–32.50 週內盤中低點支撐且日 RSI 由 66 降至 62 以下不破即收紅確認，或週線收紅守 31.05 週 SMA20。</span></div><div class="drow"><b>進場時機</b><span>本週至下週（6/8–6/13）短線回整期分批介入；若整理延伸可等 6/10 月營收公布後再確認。</span></div><div class="drow"><b>目標價</b><span>35.85（外資均價目標 35.85–36.23，取下緣 35.85）</span></div><div class="drow"><b>停損</b><span>31.26</span></div><div class="drow"><b>風報比</b><span>2.2</span></div></div>
+      <div class="why">【長線】基本面確實轉強而非曇花一現：2026Q1稅後淨利110.17億（YoY+51.7%）、淨利率42.0%創觀察期新高、EPS0.76元、ROE12.7%且趨勢向上，YTD營收+50.1%核心來自京城銀100%整併帶來的結構性規模效益（分行…</div>
+    </details>
   </article>
 
   <article class="card">
@@ -372,7 +481,12 @@
       <div><label>進場帶</label><b>回163–165分批</b></div>
       <div><label>停損</label><b>156.64</b></div>
     </div>
-    <div class="why">【長線】基本面是本案最強支柱：2026Q1毛利率27.5%、營益率23.8%、稅後淨利率20.4%皆為觀察期最高，EPS2.58元YoY+73.2%，滾動ROE19.4%逼近優異門檻，現金流健康（2025全年FCF32億、OCF/NI1.73）…</div>
+    <div class="chips"><span class="chip "><i>淨利率</i>20.4%</span><span class="chip "><i>ROE</i>19.4%</span><span class="chip "><i>負債比</i>48.6%</span><span class="chip "><i>OCF含金</i>0.8x</span><span class="chip "><i>PER</i>35.95x</span><span class="chip "><i>RSI</i>75</span><span class="chip up"><i>乖離60</i>+39.6%</span><span class="chip "><i>距52高</i>-1.1%</span><span class="chip dn"><i>外資</i>連賣1日 -0.09萬張</span></div>
+    <details class="more">
+      <summary>展開完整評析</summary>
+      
+      <div class="why">【長線】基本面是本案最強支柱：2026Q1毛利率27.5%、營益率23.8%、稅後淨利率20.4%皆為觀察期最高，EPS2.58元YoY+73.2%，滾動ROE19.4%逼近優異門檻，現金流健康（2025全年FCF32億、OCF/NI1.73）…</div>
+    </details>
   </article>
 
   <article class="card">
@@ -390,7 +504,12 @@
       <div><label>進場帶</label><b>回 59–63 元分批</b></div>
       <div><label>停損</label><b>61.38</b></div>
     </div>
-    <div class="why">【長線】綜合裁定Overweight（建設性偏多，但非無腦Buy）。基本面是最強支柱：2026Q1稅後淨利155.94億YoY+90%、EPS1.08元單季創高、淨利率39%（金融門檻達標）、ROE12.1%達「佳」，且1-4月營收YTD+56…</div>
+    <div class="chips"><span class="chip "><i>負債比</i>91.7%</span><span class="chip "><i>PER</i>22x</span><span class="chip "><i>RSI</i>69</span><span class="chip up"><i>乖離60</i>+20.9%</span><span class="chip "><i>距52高</i>-0.6%</span><span class="chip dn"><i>外資</i>連賣1日 -0.38萬張</span></div>
+    <details class="more">
+      <summary>展開完整評析</summary>
+      <div class="detail"><div class="drow"><b>觀點</b><span>月線與週線結構健康（連續主升段＋HH/HL），基本面獲利爆發支持長抱，但日／週 RSI 雙雙 83 極端超買且融資兩日暴增 307%，短線追高勝率差，宜回檔（59～63 區）分批佈局而非搶短。</span></div><div class="drow"><b>進場觸發</b><span>回測 59.0～63.7 支撐區量縮、日 RSI 回落至 60～70，週線 HH/HL 結構不破則分批承接。</span></div><div class="drow"><b>進場時機</b><span>本季任何回測月線支撐週（預期 RSI 降溫後，最快 6/9 週起觀察，無時限壓力）皆可佈局。</span></div><div class="drow"><b>目標價</b><span>73（法人目標價，自 51 元上修至 73 元）</span></div><div class="drow"><b>停損</b><span>61.38</span></div><div class="drow"><b>風報比</b><span>2</span></div></div>
+      <div class="why">【長線】綜合裁定Overweight（建設性偏多，但非無腦Buy）。基本面是最強支柱：2026Q1稅後淨利155.94億YoY+90%、EPS1.08元單季創高、淨利率39%（金融門檻達標）、ROE12.1%達「佳」，且1-4月營收YTD+56…</div>
+    </details>
   </article>
 
   <article class="card">
@@ -408,7 +527,12 @@
       <div><label>進場帶</label><b>880–905 分批</b></div>
       <div><label>停損</label><b>866.2</b></div>
     </div>
-    <div class="why">【長線】三面向強、一面向缺,權衡後給予建設性偏多的Overweight而非Buy。支持做多的證據紮實:①基本面(新聞面可驗證部分)訂單創新高234.6億、5月營收年增48.23%、Q1EPS年增66%且三率三升,成長為趨勢非單季;②籌碼面外資6…</div>
+    <div class="chips"><span class="chip "><i>PER</i>26.48x</span><span class="chip up"><i>乖離60</i>0%</span><span class="chip "><i>距52高</i>0%</span><span class="chip dn"><i>外資</i>連賣1日 -0.02萬張</span></div>
+    <details class="more">
+      <summary>展開完整評析</summary>
+      <div class="detail"><div class="drow"><b>觀點</b><span>月線10個月主升段成立且外資連買7日確立方向,基本面訂單/營收雙創高支持長線,惟月線較均值偏熱+35%、日線正於880~950量縮整理,不宜追高搶短,宜等回踩880~905支撐區分批布局。</span></div><div class="drow"><b>進場觸發</b><span>回測880~905支撐區不破且不收破880,站回日SMA20(927.8)確認量縮結束再分批進場</span></div><div class="drow"><b>進場時機</b><span>本季(6~7月)逢回880~905即可分批布局,6月中旬月營收公布後再確認力度加碼</span></div><div class="drow"><b>目標價</b><span>1045（窗內高點1045(05/08波段高)）</span></div><div class="drow"><b>停損</b><span>866.2</span></div><div class="drow"><b>風報比</b><span>1.2</span></div></div>
+      <div class="why">【長線】三面向強、一面向缺,權衡後給予建設性偏多的Overweight而非Buy。支持做多的證據紮實:①基本面(新聞面可驗證部分)訂單創新高234.6億、5月營收年增48.23%、Q1EPS年增66%且三率三升,成長為趨勢非單季;②籌碼面外資6…</div>
+    </details>
   </article>
 
   <article class="card">
@@ -426,7 +550,12 @@
       <div><label>進場帶</label><b>回 79–81 分批</b></div>
       <div><label>停損</label><b>81.42</b></div>
     </div>
-    <div class="why">【長線】綜合五面向，2882是「長線結構佳、短線過熱」的典型構型，給予Overweight而非Buy（追高安全邊際已壓縮）也非Hold（多空證據明顯不對稱、偏多）。多方核心成立且可驗證：(1)IFRS17接軌使負債利息成本由3.4%降至2.11…</div>
+    <div class="chips"><span class="chip "><i>負債比</i>94.3%</span><span class="chip "><i>PER</i>14.87x</span><span class="chip "><i>RSI</i>91</span><span class="chip up"><i>乖離60</i>+26.6%</span><span class="chip "><i>距52高</i>-3%</span><span class="chip dn"><i>外資</i>連賣1日 -0.6萬張</span></div>
+    <details class="more">
+      <summary>展開完整評析</summary>
+      <div class="detail"><div class="drow"><b>觀點</b><span>月線多年新高、年線上方遠離且 IFRS 17 結構性改善支撐長線基本面，但日/週 RSI 雙超買、現價貼 52 週高，短線追高不利，宜回測 79–81 支撐區再分批布局。</span></div><div class="drow"><b>進場觸發</b><span>回測 79–81 支撐區（SMA20 79.46 + W22 週線整理平台）站穩後日線 RSI 回落至 60 以下收紅，確認回調不破即分批進場。</span></div><div class="drow"><b>進場時機</b><span>本季（2026Q3）任意回測月線支撐皆可佈局，預期超買消化後 1–4 週內出現回檔機會。</span></div><div class="drow"><b>目標價</b><span>91.2（週線突破延伸理論目標 91.2）</span></div><div class="drow"><b>停損</b><span>81.42</span></div><div class="drow"><b>風報比</b><span>1.3</span></div></div>
+      <div class="why">【長線】綜合五面向，2882是「長線結構佳、短線過熱」的典型構型，給予Overweight而非Buy（追高安全邊際已壓縮）也非Hold（多空證據明顯不對稱、偏多）。多方核心成立且可驗證：(1)IFRS17接軌使負債利息成本由3.4%降至2.11…</div>
+    </details>
   </article>
 
   <article class="card">
@@ -444,7 +573,12 @@
       <div><label>進場帶</label><b>90.0–90.9分批</b></div>
       <div><label>停損</label><b>87.82</b></div>
     </div>
-    <div class="why">【長線】研究經理裁決：Overweight（建設性偏多，非強力Buy）。基本面是核心且動能延續而非曇花一現——YTD營收YoY+24.5%、連六月同期創高，Q1'26營收9.17億創歷史新高、EPS2.08為近5季新高（QoQ+30%、YoY+…</div>
+    
+    <details class="more">
+      <summary>展開完整評析</summary>
+      <div class="detail"><div class="drow"><b>觀點</b><span>月線站穩年線（89.33）之上、營收連六月創高且三率同步擴張、多引擎在手訂單能見度延伸，長線基本面結構紮實；但週線動能連六週高點遞減、日線仍在SMA20（93.4）之下未確認止跌，短線搶進不利，宜長線逢90.0–90.9支撐分批承接。</span></div><div class="drow"><b>進場觸發</b><span>回測週SMA10/日SMA50/近期低點三重共振區90.0–90.9不破即分批承接，若能帶量站回日SMA20(93.4)則屬短線轉強確認可加碼。</span></div><div class="drow"><b>進場時機</b><span>長線佈局窗口放寬：本季（6-8月）逢回90.0–90.9即可分批進場，無需搶進；若先突破93.4可視為提前確認訊號、待站穩後補進。</span></div><div class="drow"><b>目標價</b><span>106（52週高106.0(2/10前高)）</span></div><div class="drow"><b>停損</b><span>87.82</span></div><div class="drow"><b>風報比</b><span>3.8</span></div></div>
+      <div class="why">【長線】研究經理裁決：Overweight（建設性偏多，非強力Buy）。基本面是核心且動能延續而非曇花一現——YTD營收YoY+24.5%、連六月同期創高，Q1'26營收9.17億創歷史新高、EPS2.08為近5季新高（QoQ+30%、YoY+…</div>
+    </details>
   </article>
 
   <article class="card">
@@ -462,7 +596,12 @@
       <div><label>進場帶</label><b>38–40 分批</b></div>
       <div><label>停損</label><b>35.27</b></div>
     </div>
-    <div class="why">綜合五面向證據，多方論據在「方向、結構、籌碼主力」三項佔上風，故給予建設性偏多的Overweight，而非全力Buy（短線過熱風險真實存在），亦非Hold（此案並非真正均衡——基本面與籌碼面的證據明顯偏多）。</div>
+    
+    <details class="more">
+      <summary>展開完整評析</summary>
+      
+      <div class="why">綜合五面向證據，多方論據在「方向、結構、籌碼主力」三項佔上風，故給予建設性偏多的Overweight，而非全力Buy（短線過熱風險真實存在），亦非Hold（此案並非真正均衡——基本面與籌碼面的證據明顯偏多）。</div>
+    </details>
   </article>
 
   <article class="card">
@@ -480,7 +619,12 @@
       <div><label>進場帶</label><b>33–35分批</b></div>
       <div><label>停損</label><b>30.89</b></div>
     </div>
-    <div class="why">【長線】本案評Overweight（偏多、非強力Buy）。多方論點紮實：Q1EPS0.82元年增38%、本益比僅11.7倍遠低於同業39.21倍、股淨比1.3倍、現金股利2.5元（殖利率6.03%），在手訂單逾50億、能見度三年以上，疊加台電強…</div>
+    
+    <details class="more">
+      <summary>展開完整評析</summary>
+      <div class="detail"><div class="drow"><b>觀點</b><span>技術面日/週/月資料因 FinMind 故障全缺、無法確認短線進場時點，且投信轉賣、5月營收年減13.63%、7/2 除息等近期訊號偏空，但低本益比(11.7倍)＋6%殖利率＋台電強韌電網與AI資料中心三年以上訂單能見度屬基本面長線驅動，故定位為長線分批佈局標的。</span></div><div class="drow"><b>進場觸發</b><span>技術面支撐/壓力位因資料缺失無法確認，故以基本面訊號替代：待7/2除息缺口收斂、股價站穩且6月營收（約7/10公布）轉為年增或年減幅收斂後再分批加碼，不追高。</span></div><div class="drow"><b>進場時機</b><span>7/2除息後觀察1-2週價格穩定度，7月10日左右6月營收公布後確認訊號轉強再進場；本季（Q3）內逢回分批布局皆可，優先等待FinMind技術資料修復以二次確認。</span></div><div class="drow"><b>目標價</b><span>40.65（52週高40.65(僅存報價快照)）</span></div><div class="drow"><b>停損</b><span>30.89</span></div></div>
+      <div class="why">【長線】本案評Overweight（偏多、非強力Buy）。多方論點紮實：Q1EPS0.82元年增38%、本益比僅11.7倍遠低於同業39.21倍、股淨比1.3倍、現金股利2.5元（殖利率6.03%），在手訂單逾50億、能見度三年以上，疊加台電強…</div>
+    </details>
   </article>
 
   <article class="card">
@@ -498,7 +642,12 @@
       <div><label>進場帶</label><b>41–43 分批</b></div>
       <div><label>停損</label><b>39.56</b></div>
     </div>
-    <div class="why">綜合多空辯證，合機（1618）在42.20元的證據天平明顯偏向建設性偏多，但因仍有未化解的技術壓力與籌碼隱憂，不足以給到最強Buy，故定為Overweight。</div>
+    
+    <details class="more">
+      <summary>展開完整評析</summary>
+      
+      <div class="why">綜合多空辯證，合機（1618）在42.20元的證據天平明顯偏向建設性偏多，但因仍有未化解的技術壓力與籌碼隱憂，不足以給到最強Buy，故定為Overweight。</div>
+    </details>
   </article>
 
   <article class="card">
@@ -516,7 +665,12 @@
       <div><label>進場帶</label><b>39.25–40.30分批</b></div>
       <div><label>停損</label><b>38.63</b></div>
     </div>
-    <div class="why">【長線】綜合五面向，多方證據明顯佔優：基本面呈多向共振的實質改善——2026Q1毛利27.3%/營益18.1%/淨利11.3%三率同創近5季新高、EPS年增74.6%、OCF/NI含金量由去年同期-0.65翻正至1.53、負債比降至41.6%（…</div>
+    
+    <details class="more">
+      <summary>展開完整評析</summary>
+      <div class="detail"><div class="drow"><b>觀點</b><span>日/週/月三週期均站上各自均線且基本面（營收連月加速、三率創5季新高、去槓桿、含金量翻正）支持長抱，但日線5/26於52週高44.75爆量長上影線反轉後量縮整理、短線追高風險升，宜等回踩39.25~40.30支撐或帶量突破44.75再進，故定調長線佈局而非搶短。</span></div><div class="drow"><b>進場觸發</b><span>回測39.25–40.30支撐不破且收紅確認守穩，或帶量收盤站上44.75確認延續多頭。</span></div><div class="drow"><b>進場時機</b><span>本季逢回踩支撐區即可分批進場；若續強不拉回，則待放量突破44.75後再追。</span></div><div class="drow"><b>目標價</b><span>44.75（52週高／5/26前高44.75）</span></div><div class="drow"><b>停損</b><span>38.63</span></div><div class="drow"><b>風報比</b><span>1</span></div></div>
+      <div class="why">【長線】綜合五面向，多方證據明顯佔優：基本面呈多向共振的實質改善——2026Q1毛利27.3%/營益18.1%/淨利11.3%三率同創近5季新高、EPS年增74.6%、OCF/NI含金量由去年同期-0.65翻正至1.53、負債比降至41.6%（…</div>
+    </details>
   </article>
 
   <article class="card">
@@ -534,7 +688,12 @@
       <div><label>進場帶</label><b>2325–2383分批</b></div>
       <div><label>停損</label><b>2316.1</b></div>
     </div>
-    <div class="why">【長線】綜合評估後給予Overweight（建設性偏多）而非Buy，核心矛盾在於「一流基本面vs過熱技術面＋警戒籌碼」。基本面幾乎無可挑剔：月營收YTDYoY+29.9%、2026Q1EPS年增58.3%（13.95→22.08）、毛利/營益/…</div>
+    
+    <details class="more">
+      <summary>展開完整評析</summary>
+      <div class="detail"><div class="drow"><b>觀點</b><span>月線/週線長多主升段（站上年線逾32%、13個月未破年線）加基本面五季獲利加速支持長抱，但日線剛急跌急拉、週月RSI 74/82深度超買加籌碼分布型結構，不利短線追價，故屬長線逢回布局標的。</span></div><div class="drow"><b>進場觸發</b><span>回測SMA20(2383)或前波拉回低點2325–2340止穩不破，即分批進場；若失守2310(SMA50)則暫緩加碼。</span></div><div class="drow"><b>進場時機</b><span>本季（Q3）逢回不破2325–2340區間皆可分批佈局，近1–2週先觀察日線消化後能否守穩2383。</span></div><div class="drow"><b>目標價</b><span>2535（52週/資料集歷史高2535前高壓力）</span></div><div class="drow"><b>停損</b><span>2316.1</span></div><div class="drow"><b>風報比</b><span>0.7</span></div></div>
+      <div class="why">【長線】綜合評估後給予Overweight（建設性偏多）而非Buy，核心矛盾在於「一流基本面vs過熱技術面＋警戒籌碼」。基本面幾乎無可挑剔：月營收YTDYoY+29.9%、2026Q1EPS年增58.3%（13.95→22.08）、毛利/營益/…</div>
+    </details>
   </article>
 
   <article class="card">
@@ -552,7 +711,12 @@
       <div><label>進場帶</label><b>152–161 分批</b></div>
       <div><label>停損</label><b>144.76</b></div>
     </div>
-    <div class="why">四大面向中三項偏多、一項偏貴，最具決定性的籌碼面明確轉向法人聯合積累，足以支撐建設性偏多評等，但估值已回「合理偏貴」、進場點偏高使其不足以給出最強的Buy。</div>
+    
+    <details class="more">
+      <summary>展開完整評析</summary>
+      
+      <div class="why">四大面向中三項偏多、一項偏貴，最具決定性的籌碼面明確轉向法人聯合積累，足以支撐建設性偏多評等，但估值已回「合理偏貴」、進場點偏高使其不足以給出最強的Buy。</div>
+    </details>
   </article>
 
   <article class="card">
@@ -570,7 +734,12 @@
       <div><label>進場帶</label><b>22.15–22.40 分批</b></div>
       <div><label>停損</label><b>21.87</b></div>
     </div>
-    <div class="why">【長線】綜合裁定Overweight（建設性偏多），核心是「基本面與評價的不對稱」壓過技術與籌碼的近期雜訊，但不足以喊Buy。基本面為決定性接地證據：2025全年EPS2.83元（近四年新高、法說會揭露）、ROE14.2%升向傳產佳線、負債比6…</div>
+    
+    <details class="more">
+      <summary>展開完整評析</summary>
+      <div class="detail"><div class="drow"><b>觀點</b><span>月線守穩SMA10m(22.63)與年線SMA52w(22.11)、基本面爆發改善且PER 5.85x/PBR 0.83x嚴重折價，適合長線分批佈局；但週線連3週LH-LL空頭、外資5月轉派發，短線搶反彈勝率低故不列both。</span></div><div class="drow"><b>進場觸發</b><span>回測 22.15–22.40 支撐帶放量止穩，或月線收盤守住 SMA10m(22.63) 確認長多架構未破。</span></div><div class="drow"><b>進場時機</b><span>本季（2026Q2–Q3）回測月線 SMA10m 附近皆可分批佈局，無需等特定日。</span></div><div class="drow"><b>目標價</b><span>26.55（52 週高 26.55）</span></div><div class="drow"><b>停損</b><span>21.87</span></div><div class="drow"><b>風報比</b><span>5</span></div></div>
+      <div class="why">【長線】綜合裁定Overweight（建設性偏多），核心是「基本面與評價的不對稱」壓過技術與籌碼的近期雜訊，但不足以喊Buy。基本面為決定性接地證據：2025全年EPS2.83元（近四年新高、法說會揭露）、ROE14.2%升向傳產佳線、負債比6…</div>
+    </details>
   </article>
 
   <article class="card">
@@ -588,7 +757,12 @@
       <div><label>進場帶</label><b>147.8–150 分批</b></div>
       <div><label>停損</label><b>140.66</b></div>
     </div>
-    <div class="why">【短長皆宜】綜合四面向，證據明顯偏多但估值與獲利品質構成節制，故定調Overweight（建設性偏多）而非Buy，亦非真正五五波的Hold。技術面日、週線確認多頭且放量（近20日均量較前20日+50.2%），週線連8週收盤墊高、結構最扎實；月線5月…</div>
+    
+    <details class="more">
+      <summary>展開完整評析</summary>
+      <div class="detail"><div class="drow"><b>觀點</b><span>日線與週線已確認多頭（週線連8週墊高、量增逾5成），月線5月剛站回10月SMA屬起漲2個月的年輕上升腳，配合外資3個月積累與H2菲律賓液冷/車載/DSC催化，短線動能與長線題材皆具備，惟PER 22.45估值偏滿，長線宜逢147.8~150回檔分批布局而非追高。</span></div><div class="drow"><b>進場觸發</b><span>回測147.8–150（日SMA20疊合4/27前高轉撐）不破且量縮止穩，視為拉回買點確認。</span></div><div class="drow"><b>進場時機</b><span>未來1–2週逢拉回147.8–150即分批進場；6月收盤站穩148.75月線（10月SMA）可加碼確立長線信心。</span></div><div class="drow"><b>目標價</b><span>172（前高172(週線波段高，26/1/30)）</span></div><div class="drow"><b>停損</b><span>140.66</span></div><div class="drow"><b>風報比</b><span>1.3</span></div></div>
+      <div class="why">【短長皆宜】綜合四面向，證據明顯偏多但估值與獲利品質構成節制，故定調Overweight（建設性偏多）而非Buy，亦非真正五五波的Hold。技術面日、週線確認多頭且放量（近20日均量較前20日+50.2%），週線連8週收盤墊高、結構最扎實；月線5月…</div>
+    </details>
   </article>
 
   <article class="card">
@@ -606,13 +780,25 @@
       <div><label>進場帶</label><b>153–160 分批</b></div>
       <div><label>停損</label><b>146.72</b></div>
     </div>
-    <div class="why">綜合四面向，緯創（3231）於2026-05-29的證據明顯偏多，但短線過熱使我給出「Overweight（建設性偏多）」而非最高評級的Buy。</div>
+    
+    <details class="more">
+      <summary>展開完整評析</summary>
+      
+      <div class="why">綜合四面向，緯創（3231）於2026-05-29的證據明顯偏多，但短線過熱使我給出「Overweight（建設性偏多）」而非最高評級的Buy。</div>
+    </details>
   </article>
 </main>
 <footer>
   資料來源：tw-data-adapter（TWSE／TPEx 官方源 + FinMind 現金流）+ web 新聞。<br>
-  「深評」徽章＝經多 agent 逐檔深度分析；其餘為快層排序卡片摘要。<br>
-  本頁自動產生，非即時；下單前請以券商 App／證交所資料再核對。
+  「深評」徽章＝經多 agent 逐檔深度分析；metric 徽章取自量化篩選訊號（21/31 檔有）。<br>
+  本頁自動產生。下單前請以券商 App／證交所資料再核對。
 </footer>
+<script>
+  var FS=[15,16,18,21,24,27], KEY='tsm_fs';
+  var fi=parseInt(localStorage.getItem(KEY)); if(isNaN(fi)) fi=2;
+  function apFS(){document.documentElement.style.setProperty('--fs',FS[fi]+'px')}
+  function fs(d){ if(d===0){fi=2}else{fi=Math.max(0,Math.min(FS.length-1,fi+d))} localStorage.setItem(KEY,fi); apFS() }
+  apFS();
+</script>
 </body>
 </html>
